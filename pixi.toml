@@ -1,5 +1,5 @@
 [workspace]
-channels = ["knime", "conda-forge"]
+channels = ["knime/label/nightly", "knime", "conda-forge"]
 platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 
 [tasks]
@@ -7,17 +7,17 @@ test = { cmd = "pytest" }
 format = { cmd = "ruff format ." }
 
 [dependencies]
-python = "3.11.*"
+python = "3.13.*"
 pytest = "*"
 ruff = "*"
-knime-extension = "*"
-knime-python-base = "*"
-knime-python-versions = "5.*"
+knime-extension = "5.13.*"
+knime-python-base = "5.13.*"
+knime-python-versions = "5.13.*"
 rdkit = ">=2025.3.6,<2026"
 
 [feature.build.dependencies]
-python = "3.9.*"
-knime-extension-bundling = "5.*"
+python = "*"
+knime-extension-bundling = "6.1.*"
 
 [feature.debug.dependencies]
 debugpy = "*"
