@@ -13,10 +13,7 @@ ruff = "*"
 knime-extension = "5.13.*"
 knime-python-base = "5.13.*"
 knime-python-versions = "5.13.*"
-# Stay on the 2025.03 line the test workflows were recorded with: 2025.09 changes descriptor
-# values in the last digit (e.g. qed 0.4904468907838007 vs 0.49044689078380066), which the
-# exact-match Table Difference Checker in "Descriptor Test WF" reports as a failure.
-rdkit = ">=2025.3.6,<2025.9"
+rdkit = ">=2025.3.6,<2026"
 
 [feature.build.dependencies]
 python = "*"
