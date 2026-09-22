@@ -64,12 +64,13 @@ from SA_Score import sascorer
 import NP_Score
 from NP_Score import npscorer
 
-# this is pretty gross, but we need to be able to import utils both when
-# running as part of the node/package and when running the test suite
+# Relative import first: extensions share a Python gateway's sys.path, so a bare
+# `import utils` can bind another extension's top-level utils module. The fallback
+# covers the test suite, which runs these modules without package context.
 try:
-    import utils
-except ImportError: 
     from . import utils
+except ImportError:
+    import utils
 
 
 LOGGER = logging.getLogger(__name__)

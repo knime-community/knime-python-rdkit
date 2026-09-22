@@ -56,12 +56,13 @@ import pandas as pd
 import numpy as np
 LOGGER = logging.getLogger(__name__)
 
-# this is pretty gross, but we need to be able to import utils both when
-# running as part of the node/package and when running the test suite
+# Relative import first: extensions share a Python gateway's sys.path, so a bare
+# `import utils` can bind another extension's top-level utils module. The fallback
+# covers the test suite, which runs these modules without package context.
 try:
-    import utils
-except ImportError: 
     from . import utils
+except ImportError:
+    import utils
 
 @knext.node(
     name="Stereoisomer Enumeration",
