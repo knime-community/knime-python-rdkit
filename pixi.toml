@@ -17,9 +17,7 @@ rdkit = ">=2025.3.6,<2026"
 
 [feature.build.dependencies]
 python = "3.14.*"
-knime-extension-bundling = "5.12.*"
-# Tycho 4.0.7 in bundling 5.12 fails on Maven 3.10 ("No implementation for MavenTargetLocationFactory")
-maven = "3.9.*"
+knime-extension-bundling = "6.1.*"
 
 [feature.debug.dependencies]
 debugpy = "*"
