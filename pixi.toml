@@ -10,20 +10,22 @@ format = { cmd = "ruff format ." }
 python = "3.13.*"
 pytest = "*"
 ruff = "*"
-knime-extension = "5.13.*"
-knime-python-base = "5.13.*"
-knime-python-versions = "5.13.*"
+knime-extension = "5.12.*"
+knime-python-base = "5.12.*"
+knime-python-versions = "5.12.*"
 rdkit = ">=2025.3.6,<2026"
 
 [feature.build.dependencies]
-python = "*"
-knime-extension-bundling = "6.1.*"
+python = "3.14.*"
+knime-extension-bundling = "5.12.*"
+# Tycho 4.0.7 in bundling 5.12 fails on Maven 3.10 ("No implementation for MavenTargetLocationFactory")
+maven = "3.9.*"
 
 [feature.debug.dependencies]
 debugpy = "*"
 
 [feature.build.tasks]
-build = { args = [{ "arg" = "dest", "default" = "./local-update-site" }], cmd = "build-python-extension . {{ dest }} --update-sites-version nightly"}
+build = { args = [{ "arg" = "dest", "default" = "./local-update-site" }], cmd = "build-python-extension . {{ dest }} --update-sites-version 5.12"}
 register-debug-in-knime = { description = "Register the current KNIME extension with a KNIME installation. Usage: 'pixi run register-debug-in-knime' (default locations) or 'pixi run register-debug-in-knime C:/' (search entire C: drive if no executables found). Note windows paths should not end with \\ (backslash)", args = [
                 { "arg" = "search_path", "default" = "" }], cmd = "register-debug-in-knime{% if search_path %} --search-path \"{{ search_path }}\"{% endif %}" }
 
