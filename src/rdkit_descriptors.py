@@ -52,13 +52,16 @@ import logging
 import knime.extension as knext
 import pandas as pd
 import numpy as np
-from rdkit import Chem
+from rdkit import Chem, RDConfig
 from rdkit.Chem import  Descriptors
-# FIX: this needs to be resolved
-#exec_path = sys.executable
-#sys.path.append(os.path.join(os.path.dirname(exec_path), 'share','RDKit','Contrib'))
-exec_path = sys.exec_prefix
-sys.path.append(os.path.join(exec_path, 'share','RDKit','Contrib'))
+# conda installs RDKit's Contrib under <prefix>/share, on Windows under <prefix>/Library/share.
+# RDConfig holds the prefix from install time, so it only helps if the environment was not moved.
+for contrib_dir in (os.path.join(sys.exec_prefix, 'share','RDKit','Contrib'),
+                    os.path.join(sys.exec_prefix, 'Library','share','RDKit','Contrib'),
+                    RDConfig.RDContribDir):
+    if os.path.isdir(contrib_dir):
+        sys.path.append(contrib_dir)
+        break
 import SA_Score
 from SA_Score import sascorer
 import NP_Score
